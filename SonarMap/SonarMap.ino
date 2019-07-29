@@ -22,6 +22,8 @@
 
 Servo sonarServo;
 
+bool debug_mode = true;
+
 int servoPos = SERVO_MID;  // Center position
 int relativePos = servoPos - 90;
 
@@ -37,34 +39,70 @@ void setup() {
   delay(1000);
 
   Serial.begin(115200);
+
+  /*if (debug_mode) {
+    for (int x = 0; x < x <= 3; x++) {
+      //FXN
+      delay(3000);  //DELAY
+    }
+
+    while (true) {
+      ;
+    }
+    }*/
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  if (digitalRead(SWEEP_TRIGGER) == LOW) {
+    while (digitalRead(SWEEP_TRIGGER) == LOW) {
+      delay(1);
+    }
+    delay(10);
 
+    sweepDistance();
+  }
+  else if (debug_mode) {
+    sweepDistance();
+    delay(3000);
+  }
 }
 
-void servoSweep() {
-  for (int x = servoPos; x >= SERVO_MIN; x--) {
+void sweepDistance() {
+  for (servoPos = SERVO_MID; servoPos >= SERVO_MIN; servoPos = servoPos - 7) {
+    if (servoPos < SERVO_MIN) break;//servoPos = SERVO_MIN;
+    sonarServo.write(servoPos);
+    delay(10);
+
     //Serial.print(servoPos);
-    relativePos = servoPos - 90;
-    Serial.print(relativePos);
+    //relativePos = x - 90;
+    //Serial.print(relativePos);
+    Serial.print(servoPos);
     Serial.print(",");
     Serial.println(sonarDistance());
     delay(STEP_DELAY);
   }
-  for (int x = SERVO_MIN; x <= SERVO_MAX; x++) {
+  for (servoPos = SERVO_MIN; servoPos <= SERVO_MAX; servoPos = servoPos + 7) {
+    if (servoPos > SERVO_MAX) break;//servoPos = SERVO_MAX;
+    sonarServo.write(servoPos);
+    delay(10);
+
     //Serial.print(servoPos);
-    relativePos = servoPos - 90;
-    Serial.print(relativePos);
+    //relativePos = x - 90;
+    //Serial.print(relativePos);
+    Serial.print(servoPos);
     Serial.print(",");
     Serial.println(sonarDistance());
     delay(STEP_DELAY);
   }
-  for (int x = SERVO_MAX; x >= SERVO_MID; x--) {
+  for (servoPos = SERVO_MAX; servoPos >= SERVO_MID; servoPos = servoPos - 7) {
+    if (servoPos < SERVO_MID) break;//servoPos = SERVO_MID;
+    sonarServo.write(servoPos);
+    delay(10);
+
     //Serial.print(servoPos);
-    relativePos = servoPos - 90;
-    Serial.print(relativePos);
+    //relativePos = servoPos - 90;
+    //Serial.print(relativePos);
+    Serial.print(servoPos);
     Serial.print(",");
     Serial.println(sonarDistance());
     delay(STEP_DELAY);
