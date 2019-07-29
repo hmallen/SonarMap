@@ -23,6 +23,7 @@
 Servo sonarServo;
 
 int servoPos = SERVO_MID;  // Center position
+int relativePos = servoPos - 90;
 
 void setup() {
   pinMode(SONAR_TRIGGER, OUTPUT);
@@ -45,19 +46,25 @@ void loop() {
 
 void servoSweep() {
   for (int x = servoPos; x >= SERVO_MIN; x--) {
-    Serial.print(servoPos);
+    //Serial.print(servoPos);
+    relativePos = servoPos - 90;
+    Serial.print(relativePos);
     Serial.print(",");
     Serial.println(sonarDistance());
     delay(STEP_DELAY);
   }
   for (int x = SERVO_MIN; x <= SERVO_MAX; x++) {
-    Serial.print(servoPos);
+    //Serial.print(servoPos);
+    relativePos = servoPos - 90;
+    Serial.print(relativePos);
     Serial.print(",");
     Serial.println(sonarDistance());
     delay(STEP_DELAY);
   }
   for (int x = SERVO_MAX; x >= SERVO_MID; x--) {
-    Serial.print(servoPos);
+    //Serial.print(servoPos);
+    relativePos = servoPos - 90;
+    Serial.print(relativePos);
     Serial.print(",");
     Serial.println(sonarDistance());
     delay(STEP_DELAY);
@@ -72,7 +79,7 @@ int sonarDistance() {
   digitalWrite(SONAR_TRIGGER, LOW);
 
   long pingDuration = pulseIn(SONAR_ECHO, HIGH);
-  long distanceIn = (duration / 2) / 74;
+  long distanceIn = (pingDuration / 2) / 74;
 
   return distanceIn;
 }
