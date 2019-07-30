@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6a8775e8c37ab2cc20e3316368d9b28b8587fb9ba59666dac5cb19e5d170461c"
+            "sha256": "f36c8635cdaf4efa11eb23dc94ec64bd0bce0c598155171ccc9db75cf34ea364"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,12 +16,27 @@
         ]
     },
     "default": {
+        "colorzero": {
+            "hashes": [
+                "sha256:acba47119b5d8555680d3cda9afe6ccc5481385ccc3c00084dd973f7aa184599",
+                "sha256:e3c36d15b293de2b2f77ff54a5bd243fffac941ed0a5332d0697a6612a26a0a3"
+            ],
+            "version": "==1.1"
+        },
         "cycler": {
             "hashes": [
                 "sha256:1d8a5ae1ff6c5cf9b93e8811e581232ad8920aeec647c37316ceac982b08cb2d",
                 "sha256:cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8"
             ],
             "version": "==0.10.0"
+        },
+        "gpiozero": {
+            "hashes": [
+                "sha256:101044038e71cec8be2fa841d4cea9e50e7962e9fb0287f465298b59e3f06594",
+                "sha256:ae1a8dc4e6e793ffd8f900968f3290d218052c46347fa0c0503c65fabe422e4d"
+            ],
+            "index": "pypi",
+            "version": "==1.5.1"
         },
         "kiwisolver": {
             "hashes": [
