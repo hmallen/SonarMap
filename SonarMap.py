@@ -8,7 +8,8 @@ logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-serial_port = '/dev/ttyACM0'
+#serial_port = '/dev/ttyACM0'
+serial_port = 'COM3'
 serial_baud = 115200
 
 
